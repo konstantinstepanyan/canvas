@@ -1,0 +1,28 @@
+block canvas 
+
+
+section.chart 
+    h1.chart__title Популярность Языков Программирования
+
+    form.chart__data(action='#' method='POST')
+        .chart__input-group 
+            label.chart__label(for='javascript') JavaScript
+            input(class='chart__input input-field' type='number' name='javascript' td='javascript' min='0' max='100' required)
+            span %
+
+        .chart__input-group 
+            label.chart__label(for='python') Python
+            input(class='chart__input input-field' type='number' name='python' td='python' min='0' max='100' required)
+            span %
+
+        .chart__input-group 
+            label.chart__label(for='go') go
+            input(class='chart__input input-field' type='number' name='go' td='go' min='0' max='100' required)
+            span %
+    
+        
+        input(class='char__submit-button input-field' type='submit' value='Показать график')
+
+
+div.chart__canvas-wrapper
+    canvas(id='canvas' width='500' height='250') Браузер не поддерживает Canvas
