@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvasPlotWidth = canvasPlot.clientWidth;
     const canvasPlotHeight = canvasPlot.clientHeight;
 
-    const scaleX = 50; //размер клетки графика по горизонтали
+    //размер одной клетки по X и Y. Значения разделены, т.к. клетка может быть с разными сторонами.
+    const scaleX = 60; //размер клетки графика по горизонтали
     const scaleY = 60; //размер клетки графика по вертикали
 
     const shiftNumberNames = 10;
@@ -75,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //Получаются вертикальные линии
 
 
-        ctx.fillText(i / scaleX, i + shiftXNumberNamesRight, shiftXNumberNamesRightDown);
+        ctx.fillText(i, i + shiftXNumberNamesRight, shiftXNumberNamesRightDown);
 
 
     }
@@ -105,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-        ctx.fillText(i / scaleY, shiftYNumberNamesBottom, i + shiftYNumberNamesBottomDown)
+        ctx.fillText(i, shiftYNumberNamesBottom, i + shiftYNumberNamesBottomDown)
         ctx.stroke()
         ctx.closePath();
 
@@ -145,6 +146,14 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.closePath();
 
     ctx.fillStyle = '#f00';
+
+
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(scaleX, scaleY); //дочерти линию до нижнего угла первой клетки. Работает с любыми значениями scaleX и scaleY
+    ctx.stroke();
+    ctx.closePath();
+
     //рисуем график
     // for (let i = 0; i <= canvasPlotWidth; i++) {
     //     const x = (i - xAxis) / scaleX;
