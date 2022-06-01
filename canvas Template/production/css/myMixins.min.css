@@ -1,0 +1,125 @@
+.customCheckbox:checked,
+.customCheckbox:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+
+.customCheckbox:checked+label,
+.customCheckbox:not(:checked)+label {
+  display: inline-block;
+  position: relative;
+  padding-left: 28px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.customCheckbox:checked+label:before,
+.customCheckbox:not(:checked)+label:before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.customCheckbox:checked+label:before,
+.customCheckbox:not(:checked)+label:before {
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+
+.customCheckbox:checked+label:after,
+.customCheckbox:not(:checked)+label:after {
+  content: "";
+  position: absolute;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.customCheckbox:checked+label:after,
+.customCheckbox:not(:checked)+label:after {
+  left: 3px;
+  top: 4px;
+  width: 10px;
+  height: 5px;
+  -webkit-border-radius: 1px;
+  border-radius: 1px;
+  border-left: 4px solid red;
+  border-bottom: 4px solid red;
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.customCheckbox:not(:checked)+label:after {
+  opacity: 0;
+}
+
+.customCheckbox:checked+label:after {
+  opacity: 1;
+}
+
+.customRadio:checked,
+.customRadio:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+
+.customRadio:checked+label,
+.customRadio:not(:checked)+label {
+  display: inline-block;
+  position: relative;
+  padding-left: 28px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.customRadio:checked+label:before,
+.customRadio:not(:checked)+label:before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #ddd;
+  background-color: #ffffff;
+}
+
+.customRadio:checked+label:before,
+.customRadio:not(:checked)+label:before {
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+}
+
+.customRadio:checked+label:after,
+.customRadio:not(:checked)+label:after {
+  content: "";
+  position: absolute;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.customRadio:checked+label:after,
+.customRadio:not(:checked)+label:after {
+  left: 5px;
+  top: 5px;
+  width: 10px;
+  height: 10px;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  background-color: red;
+}
+
+.customRadio:not(:checked)+label:after {
+  opacity: 0;
+}
+
+.customRadio:checked+label:after {
+  opacity: 1;
+}
