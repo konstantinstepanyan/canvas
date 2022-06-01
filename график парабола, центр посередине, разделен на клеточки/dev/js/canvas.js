@@ -60,6 +60,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const shiftYNumberNamesBottomDown = 0;
 
     const shiftAxisNames = 25;
+
+
+    /* Отступы для буквы X*/
+    /* Отступы Вправо*/
+    const shiftXAxisNamesLeft = 20;
+    /* Отступы Вниз*/
+    const shiftXAxisNamesDown = 20;
+
+    /* Отступы для буквы Y*/
+    /* Отступы Вправо*/
+    const shiftYAxisNamesLeft = -30;
+    /* Отступы Вниз*/
+    const shiftYAxisNamesDown = 30;
+
     ctx.font = `${scaleX / 2}px Arial`;
     ctx.textAligh = 'left';
     ctx.textBaselinke = 'top'
@@ -117,11 +131,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ctx.moveTo(xAxis, 0);
     ctx.lineTo(xAxis, canvasPlotHeight);
-    ctx.fillText('y', xAxis - shiftAxisNames, 0 + shiftAxisNames);
+    ctx.fillText('y', xAxis + shiftYAxisNamesLeft, shiftYAxisNamesDown);
+    //xAxis - это центр по иксу, - shiftYAxisNamesLeft - сместить по иксу от центра вправо
+    //shiftYAxisNamesDown - сместить вниз на указанное в переменной значение.
 
     ctx.moveTo(0, yAxis);
     ctx.lineTo(canvasPlotWidth, yAxis);
-    ctx.fillText('x', canvasPlotWidth - shiftAxisNames, yAxis - shiftAxisNames);
+    ctx.fillText('x', canvasPlotWidth - shiftXAxisNamesLeft, yAxis - shiftXAxisNamesDown);
+    //canvasPlotWidth - shiftXAxisNamesLeft - это значит, от правого края сдвинуть влево на зна-
+    //чение, равное shiftXAxisNamesLeft. (canvasPlotWidth - ширина всего канваса)
 
     ctx.stroke();
     ctx.closePath();
