@@ -75,8 +75,10 @@ document.addEventListener('DOMContentLoaded', () => {
         //двигаемся этим интервалом по иксу и чертим сверху вниз линию, равную высоте канваса. 
         //Получаются вертикальные линии
 
-
+        //будет писать значения клеток (Пример: 60, 120, 180,):
         ctx.fillText(i, i + shiftXNumberNamesRight, shiftXNumberNamesRightDown);
+        //будет писать номер клетки (Пример: 1,2,3):
+        //ctx.fillText(i/scaleX, i + shiftXNumberNamesRight, shiftXNumberNamesRightDown);
 
 
     }
@@ -105,8 +107,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
 
-
-        ctx.fillText(i, shiftYNumberNamesBottom, i + shiftYNumberNamesBottomDown)
+        //будет писать значения клеток (Пример: 60, 120, 180,):
+        ctx.fillText(i, shiftYNumberNamesBottom, i + shiftYNumberNamesBottomDown);
+        //будет писать номер клетки (Пример: 1,2,3)
+        //ctx.fillText(i/scaleY, shiftYNumberNamesBottom, i + shiftYNumberNamesBottomDown);
         ctx.stroke()
         ctx.closePath();
 
