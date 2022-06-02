@@ -287,7 +287,8 @@
   opacity: 1;
 }
 
-#canvas_plot {
+#canvas {
+  border: 1px solid black;
   margin: auto;
   background: #ead9ce;
 }
