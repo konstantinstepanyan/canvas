@@ -1,62 +1,49 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     const canvasPlot = document.getElementById('canvas_plot');
-
-
+    const ctx = canvasPlot.getContext('2d');
     //ширина и высота канваса
     const canvasPlotWidth = canvasPlot.clientWidth;
     const canvasPlotHeight = canvasPlot.clientHeight;
 
-    const cellWidth = 50; //размер клетки графика по горизонтали
-    const cellHeight = 60; //размер клетки графика по вертикали
+    //размер одной клетки по X и Y. Значения разделены, т.к. клетка может быть с разными сторонами.
+    const cellWidth1 = 60; //размер клетки графика по горизонтали
+    const cellHeight1 = 60; //размер клетки графика по вертикали
 
-
-    //const fullCircleY = cellHeight * ; //полный оборот окружности. Аналог 360 градусов для Y
-
-    //это центр графика, 0 по иксу
-    const xAxis = Math.round(canvasPlotWidth / cellWidth / 2) * cellWidth;
-    //(canvasPlotWidth / cellWidth / 2) - ширину делим на размер клетки = количество клеток на ВСЕЙ плоскости X
-    //делим количество этих клеток пополам, чтобы узнать сколько клеток с одной стороны графика.
-    //чтобы убрать 0, нужно пройти первую половину клеток по Иксу и убрать его
-    //cellWidth * кол-во половины клеток - это и есть ноль.
-    //Это уберёт 0 из отрисовки графика
-    /* ---------------------------------  */
-    //это центр графика, 0 по игрику
-    const yAxis = Math.round(canvasPlotHeight / cellHeight / 2) * cellHeight;
 
     //принимает объект, сразу распаковывает его значения, если cellWidth не указан в вызове ф-ции, ставит ей значение 50
-    //нарисуй клетки
     const drawCells = ({
         canvas, cellWidth = 50, cellHeight = 150,
         shifts = {
-            /* 
-            Первые два - это отступы для цифр на левой(отрицательной) части оси X
-            Вторые два - это отступы для цифр на правой(положительной) части оси X
-            Третьи два - это отступы для цифр на верхней, положительной части оси Y
-            Четвёртые два - это отступы для цифр на нижней, отрицательной части оси Y
-            5,6 - это отступы для буквы X
-            7,8 - это отступы для буквы Y
-            */
-
+            /* таблица отступов для цифр 
+            /* Отступы для цифр на левой(отрицательной) части оси X*/
             xNumberNamesLeft: 5, //значения сдвига Вправо:
             xNumberNamesLeftDown: 30, //значение сдвига Вниз:
+            /* Отступы для цифр на правой(положительной) части оси X*/
             XNumberNamesRight: -20,//значения сдвига Вправо:
             XNumberNamesRightDown: 30, //значение сдвига Вниз
+            /* Отступы для цифр на верхней, положительной части оси Y*/
             YNumberNamesTop: 11, //значения сдвига Вправо
             YNumberNamesTopDown: 20, //значения сдвига Вниз
+            /* Отступы для цифр на нижней, отрицательной части оси Y*/
             YNumberNamesBottom: 5, //значения сдвига Вправо   
             YNumberNamesBottomDown: 0, //значения сдвига Вниз
 
+            /* Отступы для буквы X*/
+            /* Отступы Вправо*/
             XAxisNamesLeft: cellWidth * 1.5, //посередине 2ой клетки по горизонтали находится буква X
+            /* Отступы Вниз*/
             XAxisNamesDown: cellHeight, //по вертикали на одну клетку вниз находится буква X
 
+            /* Отступы для буквы Y*/
+            /* Отступы Вправо*/
             YAxisNamesLeft: cellWidth / 2, //посередине первой клетки по горизонтали находится буква Y
+            /* Отступы Вниз*/
             YAxisNamesDown: cellHeight * 1.5 //посередине 2ой клетки по вертикали находится буква Y
         }
 
     }) => {
-        console.log(canvas);
-        const ctx = canvas.getContext('2d');
+
         ctx.fillStyle = '#000';
 
         /* Вертикальные и Горизонатльные Отступы для цифр на осях X и Y. */
@@ -166,72 +153,40 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.closePath();
     }
 
-    //нарисуй график параболы
-    const drawSchedule = ({ canvas, cellWidth = 50, cellHeight = 150,
-        shifts = {
-            /* таблица отступов для цифр 
-            /* Отступы для цифр на левой(отрицательной) части оси X*/
-            xNumberNamesLeft: 5, //значения сдвига Вправо:
-            xNumberNamesLeftDown: 30, //значение сдвига Вниз:
-            /* Отступы для цифр на правой(положительной) части оси X*/
-            XNumberNamesRight: -20,//значения сдвига Вправо:
-            XNumberNamesRightDown: 30, //значение сдвига Вниз
-            /* Отступы для цифр на верхней, положительной части оси Y*/
-            YNumberNamesTop: 11, //значения сдвига Вправо
-            YNumberNamesTopDown: 20, //значения сдвига Вниз
-            /* Отступы для цифр на нижней, отрицательной части оси Y*/
-            YNumberNamesBottom: 5, //значения сдвига Вправо   
-            YNumberNamesBottomDown: 0, //значения сдвига Вниз
+    drawCells({ canvasPlot });
 
-            /* Отступы для буквы X*/
-            /* Отступы Вправо*/
-            XAxisNamesLeft: cellWidth * 1.5, //посередине 2ой клетки по горизонтали находится буква X
-            /* Отступы Вниз*/
-            XAxisNamesDown: cellHeight, //по вертикали на одну клетку вниз находится буква X
+    //рисуем график
+    // for (let i = 0; i <= canvasPlotWidth; i++) {
+    //     const x = (i - xAxis) / cellWidth;
+    //     const y = Math.pow(x, 2);
 
-            /* Отступы для буквы Y*/
-            /* Отступы Вправо*/
-            YAxisNamesLeft: cellWidth / 2, //посередине первой клетки по горизонтали находится буква Y
-            /* Отступы Вниз*/
-            YAxisNamesDown: cellHeight * 1.5 //посередине 2ой клетки по вертикали находится буква Y
-        } }) => {
+    //     ctx.fillRect(x * cellWidth + xAxis, yAxis - cellHeight * y, 4, 4)
+    // }
+
+    const drawCurve = ({ canvas, cp1 = { x: 200, y: 150 }, cp2 = { x: 400, y: 450 }, endp = { x: 600, y: 300 } }) => {
 
         const ctx = canvas.getContext('2d');
-        // Главные оси
         ctx.beginPath();
-        ctx.strokeStyle = '#000000';
+        ctx.moveTo(50, 450);
+        ctx.lineWidth = 7;
+        ctx.strokeStyle = '#0f0';
+        ctx.bezierCurveTo(cp1.x, cp1.y, cp2.x, cp2.y, endp.x, endp.y);
 
-        ctx.moveTo(xAxis, 0);
-        ctx.lineTo(xAxis, canvasPlotHeight);
+        ctx.fillStyle = '#00f';
+        ctx.fillRect(cp1.x, cp1.y, 20, 20) //first cp
+        ctx.textBaseline = 'hanging'; //текст находится под базовой линией.
+        ctx.fillText('cp1', cp1.x + 30, cp1.y);
 
-        //xAxis - это центр по иксу, - shiftYAxisNamesLeft - сместить по иксу от центра вправо
-        //shiftYAxisNamesDown - сместить вниз на указанное в переменной значение.
-
-        ctx.moveTo(0, yAxis);
-        ctx.lineTo(canvasPlotWidth, yAxis);
-
-        //canvasPlotWidth - shiftXAxisNamesLeft - это значит, от правого края сдвинуть влево на зна-
-        //чение, равное shiftXAxisNamesLeft. (canvasPlotWidth - ширина всего канваса)
-
+        ctx.fillRect(cp2.x, cp2.y, 20, 20) //second cp
+        ctx.fillText('cp2', cp2.x + 30, cp2.y)
         ctx.stroke();
         ctx.closePath();
-
-        ctx.fillStyle = '#f00';
-        //рисуем график
-        for (let i = 0; i <= canvasPlotWidth; i++) {
-            const x = (i - xAxis) / cellWidth;
-            const y = Math.pow(x, 2);
-
-            ctx.fillRect(x * cellWidth + xAxis, yAxis - cellHeight * y, 4, 4)
-
-        }
     }
 
-
-    drawCells({ canvas: canvasPlot });
-    drawSchedule({ canvas: canvasPlot });
-
-
-
-
+    drawCurve({
+        canvas: canvasPlot,
+        // cp1: { x: 300, y: 200 },
+        // cp2: { x: 450, y: 400 },
+        // endp: { x: 650, y: 150 }
+    });
 })

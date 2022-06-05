@@ -1,0 +1,335 @@
+@import "basic/libs";
+/* smartgrid etc*/
+
+@import "basic/libs";
+@import "basic/fonts";
+@import "basic/media";
+
+@import "burgerMenu/burger";
+@import "burgerMenu/mobile-menu";
+
+@import "myMixins";
+@import "canvas";
+
+
+
+$defaultFFamily: "Open Sans Light";
+
+$allHeadersColor: #fff;
+
+$allPfontFamily: "Montserrat Regular";
+$allPColor: #777;
+
+$btnBGColor: #0b6ed8;
+$btnTextColor: #fff;
+
+$btnWidth: 45px;
+
+/* */
+
+html,
+body {
+  font-size: 10px;
+  font-family: $defaultFFamily;
+
+  @include iPhone678Plus(font-size, 20px !important);
+
+  scroll-behavior: smooth;
+  padding: 0;
+  margin: 0;
+
+  background: #020202;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+div,
+p,
+span,
+input,
+form,
+button,
+a {
+  box-sizing: border-box;
+}
+
+h1 {
+  font-family: "DM Sans Medium";
+  font-size: 6rem;
+}
+
+.title {
+  font-size: 4rem;
+  font-family: "Montserrat Light";
+}
+
+h3 {
+  font-size: 2rem;
+  font-family: "DM Sans Regular";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: $allHeadersColor;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+p {
+  font-family: $allPfontFamily;
+  color: $allPColor;
+}
+
+p,
+a,
+li,
+span {
+
+  font-size: 2rem;
+  line-height: 3rem;
+}
+
+.overflow-x_hidden {
+  overflow-x: hidden;
+  overflow-x: hidden !important;
+}
+
+ul {
+  color: #fff;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.display {
+  &_block {
+    display: block;
+  }
+
+  &_inline-block {
+    display: inline-block;
+  }
+
+  &_grid {
+    display: grid;
+  }
+
+  &_flex {
+    display: flex;
+  }
+}
+
+.row-flex {
+  @include row-flex();
+}
+
+.wrapper {
+  /*создаст строку флексами*/
+  /*
+        display: flex;
+    flex-wrap: wrap;
+    margin-left: -15px;
+    margin-right: -15px;
+*/
+  margin: 0;
+
+
+
+  .wrapper__item {
+    @include col();
+    /* 
+        box-sizing: border-box;
+        word-wrap: break-word;
+        margin-left: 15px;
+        margin-right: 15px;
+        */
+
+    @include size-galaxyS5(12);
+    /* width: calc(100% - 30px); */
+
+    @include size(11);
+    /* width: calc(91.66667% - 30px); */
+
+    @include size(10);
+    /* width: calc(83.33333% - 30px); */
+
+    @include size(9);
+    /* width: calc(75% - 30px); */
+
+    @include size(8);
+    /* width: calc(66.66667% - 30px); */
+
+    @include size(7);
+    /* width: calc(58.33333% - 30px); */
+
+    @include size-pixel2XL(6);
+    /* width: calc(50% - 30px); */
+
+    @include size(5);
+    /* width: calc(41.66667% - 30px); */
+
+    @include size(4);
+    /* width: calc(33.33333% - 30px); */
+
+    @include size(3);
+    /* width: calc(25% - 30px); */
+
+    @include size(2);
+    /* width: calc(16.66667% - 30px);*/
+
+    @include size(1);
+    /* width: calc(8.33333% - 30px); */
+
+    @include shift-left(2);
+
+    @include shift-right(2);
+
+    @include shift(1);
+    /*    Устанавливает маржины слева и справа равные одной доле
+            margin-left: calc(8.33333% + 15px);
+            margin-right: calc(8.33333% + 15px);
+        */
+
+    @include shift-galaxyS5(0);
+    /* Устанавливает маржины слева и справа равные 0 + дефолтные отступы (они же fields)
+            margin-left: calc(0% + 15px);
+            margin-right: calc(0% + 15px);
+        */
+
+    @include shift-padding(1);
+
+    @include shift-padding(2);
+
+    @include iPad(justify-content, center);
+    @include iPad(text-align, center);
+
+    @include galaxyS5(text-align, end);
+    @include galaxyS5(padding-right, 15px);
+    @include galaxyS5(border, 1px solid black);
+
+    /*
+        @include pixel2();
+        
+        @include pixel2XL();
+        
+        @include iphone5SE();
+        
+        @include iphone678();
+        
+        @include iphone678Plus();
+            
+        */
+
+    border: 1px solid red;
+  }
+}
+
+.container,
+.wrapper {
+  @include wrapper();
+
+
+  &_full {
+    display: flex;
+    justify-content: end !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+}
+
+
+.row {
+  @include row-flex();
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  justify-content: space-between;
+  max-width: 87px;
+
+  &__img {}
+
+  &__text {
+    padding-left: 13px;
+  }
+}
+
+.logo {
+
+  &__img {
+    max-width: 53px;
+  }
+
+
+
+  &__text {
+    padding-left: 7px;
+  }
+
+  &__textRow {
+    display: block;
+    color: #fff;
+    font-size: 2.2rem;
+    line-height: 2.5rem;
+    font-weight: 900;
+    font-family: "Montserrat Bold";
+
+
+    &::first-letter {
+      color: #027BFD;
+    }
+  }
+
+}
+
+.btn {
+  background: url(../img/2activeTrust/webp/btnBg.webp);
+  height: $btnWidth;
+  width: $btnWidth;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  padding: 0px;
+  position: relative;
+  margin-left: 30px;
+  transition: all .2s linear;
+  cursor: pointer;
+
+  &_regular {
+    background: rgba(0, 0, 0, 0);
+    border: 2px solid rgba(2, 123, 253, 0.5);
+    border-radius: 10px;
+    margin: 0 !important;
+  }
+
+  &__img {
+    position: absolute;
+    top: 27%;
+    left: -40%;
+    max-width: $btnWidth;
+  }
+
+
+}
+
+.gradient {
+  @include gradient(#2863ec, #7e55ed);
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.text_grey {
+  color: #888;
+}
